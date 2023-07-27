@@ -1,0 +1,22 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Currency code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Request date</th>
+        <th scope="col">Currency rate</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let request of storedRequests">
+        <td>{{ request.currency }}</td>
+        <td>{{ request.name }}</td>
+        <td>{{ request.date }}</td>
+        <td>{{ request.value }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
