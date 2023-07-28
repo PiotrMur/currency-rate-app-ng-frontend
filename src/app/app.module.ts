@@ -9,12 +9,16 @@ import { HttpClientModule} from "@angular/common/http";
 import { ValueRequestListComponent } from './valuerequest-list/value-request-list.component';
 import { ValuerequestFormComponent } from './valuerequest-form/valuerequest-form.component';
 import {RequestService} from "./request-service.service";
+import { DeleterequestFormComponent } from './deleterequest-form/deleterequest-form.component';
+import { FetchrequestFormComponent } from './fetchrequest-form/fetchrequest-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ValueRequestListComponent,
-    ValuerequestFormComponent
+    ValuerequestFormComponent,
+    DeleterequestFormComponent,
+    FetchrequestFormComponent
   ],
   imports: [
     BrowserModule,

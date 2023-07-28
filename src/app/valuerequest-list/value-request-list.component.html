@@ -3,6 +3,7 @@
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
+        <th scope="col">Id</th>
         <th scope="col">Currency code</th>
         <th scope="col">Name</th>
         <th scope="col">Request date</th>
@@ -11,10 +12,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let request of storedRequests">
+        <td>{{ request.id }}</td>
         <td>{{ request.currency }}</td>
         <td>{{ request.name }}</td>
-        <td>{{ request.date }}</td>
-        <td>{{ request.value }}</td>
+        <td>{{ request.requestDate }}</td>
+        <td>{{ request.valueRate }}</td>
       </tr>
       </tbody>
     </table>

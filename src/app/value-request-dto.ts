@@ -1,6 +1,7 @@
 export class ValueRequestDTO {
+  id: string;
   currency: string;
   name: string;
-  date: Date;
-  value: number;
+  requestDate: Date;
+  valueRate: number;
 }

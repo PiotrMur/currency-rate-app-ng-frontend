@@ -1,0 +1,41 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit(valueRequestForm)" #valueRequestForm="ngForm">
+      <div class="form-group">
+        <label for="requestId">Request's id</label>
+        <input type="text" [(ngModel)]="requestId"
+               class="form-control"
+               id="requestId"
+               name="requestId"
+               placeholder="Enter request's id"
+               required minlength="36" maxlength="36" pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$" #currency="ngModel">
+      </div>
+      <div [hidden]="currency.untouched || currency.valid" class="alert alert-danger">RequestId is not in the correct format</div>
+      <button type="getrequest" [disabled]="!valueRequestForm.form.valid"
+              class="btn btn-info">Get request
+      </button>
+      <p></p>
+      <div *ngIf="notExistingIdMessage" class="alert alert-warning">{{notExistingIdMessage}}</div>
+    </form>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Currency code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Request date</th>
+        <th scope="col">Currency rate</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="valueRequest">
+        <td>{{ valueRequest.id }}</td>
+        <td>{{ valueRequest.currency }}</td>
+        <td>{{ valueRequest.name }}</td>
+        <td>{{ valueRequest.requestDate }}</td>
+        <td>{{ valueRequest.valueRate }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
