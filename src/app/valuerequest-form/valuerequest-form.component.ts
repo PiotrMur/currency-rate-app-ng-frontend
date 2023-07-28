@@ -11,8 +11,9 @@ import {ResponseDTO} from "../response-dto";
 })
 export class ValuerequestFormComponent {
 
-  requestDTO: RequestDTO;
+  requestDTO: RequestDTO = {currency:'', name:''};
   returnedCurrencyRateValue: ResponseDTO = {value:0};
+  errorMessage: Error;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,12 @@ export class ValuerequestFormComponent {
   }
 
   onSubmit() {
-    this.requestService.requestCurrencyRate(this.requestDTO).subscribe(result => this.returnedCurrencyRateValue = result);
+    this.requestService.requestCurrencyRate(this.requestDTO).subscribe(
+      result => {this.returnedCurrencyRateValue = result;
+      },
+      error => {
+        this.errorMessage = error;
+      }
+    );
   }
 }

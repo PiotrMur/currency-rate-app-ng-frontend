@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {RequestDTO} from "./request-dto";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {ValueRequestDTO} from "./value-request-dto";
 import {ResponseDTO} from "./response-dto";
 
@@ -17,7 +17,8 @@ export class RequestService {
   }
 
   public requestCurrencyRate(requestDTO: RequestDTO) {
-    return this.http.post<ResponseDTO>(this.postRequestUrl, requestDTO);
+    return this.http.post<ResponseDTO>(this.postRequestUrl, requestDTO)
+      .pipe(catchError(err => {return throwError(err.error)}));
   }
 
   public fetchAllRequests(): Observable<ValueRequestDTO[]> {

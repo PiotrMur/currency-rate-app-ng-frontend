@@ -8,9 +8,9 @@
                id="currency"
                name="currency"
                placeholder="Enter currency code (3 letters only!)"
-               required #currency="ngModel">
+               required minlength="3" maxlength="3" pattern="[a-zA-Z]*" #currency="ngModel">
       </div>
-      <div [hidden]="!currency.pristine" class="alert alert-danger">Currency code is required</div>
+      <div [hidden]="currency.untouched || currency.valid" class="alert alert-danger">Currency code is not in the correct format</div>
       <div class="form-group">
         <label for="name">Name and surname</label>
         <input type="text" [(ngModel)]="requestDTO.name"
@@ -18,16 +18,17 @@
                id="name"
                name="name"
                placeholder="Enter your name and surname"
-               required #name="ngModel">
-        <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+               required pattern="^[a-zA-Z]+( [a-zA-Z]+)?(-[a-zA-Z]+)?$" #name="ngModel">
+        <div [hidden]="name.untouched || name.valid" class="alert alert-danger">Name is not in the correct format</div>
       </div>
       <button type="submit" [disabled]="!valueRequestForm.form.valid"
               class="btn btn-info">Submit
       </button>
+      <p></p>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
       <div class="form-group">
         <label for="name">Currency rate</label>
         <p>{{returnedCurrencyRateValue.value}}</p>
-        <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
       </div>
     </form>
   </div>
